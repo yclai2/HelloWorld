@@ -4,17 +4,25 @@
 
 <section *ngIf="!isEditMode" class="user-selector">
 <ul>
-  <li *ngFor="let item of users" (click)="selectedUser=item">
-    <b> Name:</b>{{item.name}}  <span class="age" >Age:{{item.age}} </span>
-   
+  <li *ngFor="let item of users | filterPipe; let i = index" (click)="selectedUser=item">
+    {{item.name}}  <span class="age" >Age:{{item.age}} </span> <button (click)="deleteUser(i)">Delete</button>
   </li>
 </ul>
 <div>
   <b>Name:</b>{{selectedUser.name}} <br>
-  <b>Age:</b>{{selectedUser.age}} <br>
+  <b>Age:</b>{{selectedUser.age | myPipe}} <br>
   <b>weight:</b>{{selectedUser.weight}} <br>
   <b>height:</b>{{selectedUser.height}} <br>
 <span *ngIf="selectedUser.isHealthy()">Health!</span>
+
+<div>
+  Sum Age : {{ users | sumPipe}}
+</div>
+
+<pre> {{users | filterPipe | json}}></pre>
+
+<button (click)="addUser()">Add</button>
+
 <button (click)="isEditMode=true">Edit</button>
 
 </div>

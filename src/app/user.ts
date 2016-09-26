@@ -3,7 +3,7 @@ export class User {
     age: number;
     height: number;
     weight: number;
-   
+    password:string;
 
     constructor(name:string, age:number, password:string, height:number, weight:number){
         this.name = name;
